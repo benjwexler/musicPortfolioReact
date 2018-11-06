@@ -15,12 +15,12 @@ class App extends Component {
         },
         track2: {
           name: "Aura",
-          coverArt: "pics/AuraCoverArt.png",
+          coverArt: "AuraCoverArt.png",
           soundfile: "soundfiles/Wex - Aura (ft. Waywoc) 4.wav",
         },
         track3: {
           name: "Strictly for the Music",
-          coverArt: "pics/evenNewStrict.png",
+          coverArt: "evenNewStrict.png",
           soundfile: "soundfiles/Strictly for the Music.wav",
         },
       }, length: 0
@@ -34,6 +34,13 @@ class App extends Component {
   }
 
   render() {
+
+    let tracks = []
+
+    for (let i = 1; i <= this.state.length; i++) {
+      tracks.push(<Track key={i} coverArt={this.state.tracks[`track${i}`].coverArt} title={this.state.tracks[`track${i}`].name} />)
+    }
+
     return (
       <div className="App">
         <Header />
@@ -41,7 +48,7 @@ class App extends Component {
           <img id="soundcloudAvatar" src="soundcloudAvatar.jpg" />
         </div>
         <div id="alltracksBossContainer">
-          <Track coverArt={this.state.tracks.track1.coverArt} title={this.state.tracks.track1.name} />
+          {tracks}
         </div>
       </div>
     )
