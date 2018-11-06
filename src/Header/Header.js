@@ -24,10 +24,10 @@ class Header extends React.Component {
             </ul>
             <ul className="navbar-nav">
                 <li className="nav-item ">
-                    <a className="nav-link" target="_blank"  href="https://soundcloud.com/mixedbywex">SoundCloud</a>
+                    <a className="nav-link" target="_blank" rel="noopener noreferrer" href="https://soundcloud.com/mixedbywex">SoundCloud</a>
                 </li>
                 <li className="nav-item">
-                    <a className="nav-link disabled" target="_blank" href="https://www.instagram.com/mixedbywex/">Instagram</a>
+                    <a className="nav-link disabled" target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/mixedbywex/">Instagram</a>
                 </li>
             </ul>
 
