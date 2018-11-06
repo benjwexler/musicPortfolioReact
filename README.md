@@ -1,1 +1,1 @@
-I'm simply trying to react my music portfolio site https://benjwexler.github.io/mixedByWex/ with React
+I'm simply trying to recreate my <a href="https://benjwexler.github.io/mixedByWex/"> music portfolio site</a> with React
