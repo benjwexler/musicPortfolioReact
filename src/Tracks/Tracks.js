@@ -12,8 +12,8 @@ const track = (props) => {
             <div className="trackTitleContainer">
                 <div className="title"> {props.title} </div>
             </div>
-            <div id={props.id} className="playPauseContainer">
-                <i class="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>
+            <div onClick={props.click} id={props.id} className="playPauseContainer">
+                <i className="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>
             </div>
 
         </div>
