@@ -5,8 +5,8 @@ import Track from './Tracks/Tracks.js';
 
 let firstPlay
 let currentTrack = 1
-let audioPlayer = document.getElementById("audio")
-let audioSource = document.getElementById("audioSource")
+// let audioPlayer = document.getElementById("audio")
+// let audioSource = document.getElementById("audioSource")
 
 class App extends Component {
   constructor(props) {
@@ -16,19 +16,19 @@ class App extends Component {
         track1: {
           name: "I Got You",
           coverArt: "I Got You Cover Art.png",
-          soundfile: "soundfiles/Wex & Cred - I Got You (ft. MKHL).mp3",
+          soundfile: "/soundfiles/Wex & Cred - I Got You (ft. MKHL).mp3",
           isPlaying: false
         },
         track2: {
           name: "Aura",
           coverArt: "AuraCoverArt.png",
-          soundfile: "soundfiles/Wex - Aura (ft. Waywoc) 4.wav",
+          soundfile: "/soundfiles/Wex - Aura (ft. Waywoc) 4.wav",
           isPlaying: false
         },
         track3: {
           name: "Strictly for the Music",
           coverArt: "evenNewStrict.png",
-          soundfile: "soundfiles/Strictly for the Music.wav",
+          soundfile: "/soundfiles/Strictly for the Music.wav",
           isPlaying: false
         },
       }
@@ -36,48 +36,56 @@ class App extends Component {
   }
 
 
-playAndPauseTrack = () => {
-    let id = this.id
+  playAndPauseTrack = (whichTrack) => {
+    console.log(whichTrack)
+    let id = whichTrack
     id = id[id.length - 1]
 
+    console.log(this.state.tracks[whichTrack].soundfile)
+    let audioPlayer = document.getElementById("audio")
     if (firstPlay === undefined) {
-        currentTrack = id;
-        firstPlay = true
-    } 
-        if (this.state.tracks[`track${id}`].isPlaying === false) {
-            audioSource.src = this.state.tracks[`track${id}`].soundfile
-            if (currentTrack !== id || (firstPlay === true)) {
-                audioPlayer.load()
-            }
-            audioPlayer.play()
-            window[`track${id}`].querySelector(".playPauseContainer").innerHTML = '<i class="fas fa-pause fa-2x fontAwesomePlayTrackIcon"></i>'
-            if (currentTrack !== id) {
-                window[`track${currentTrack}`].querySelector(".playPauseContainer").innerHTML = '<i class="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>'
-                this.state.tracks[`track${currentTrack}`].isPlaying = false
-            }
-        } else {
-            audioPlayer.pause()
-            window[`track${id}`].querySelector(".playPauseContainer").innerHTML = '<i class="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>'
+      currentTrack = id;
+      firstPlay = true
+    }
+    if (this.state.tracks[whichTrack].isPlaying === false) {
+      // console.log(audioSource)
 
-        }
-
-        firstPlay = false
-        currentTrack = id;
-
-        this.state.tracks[`track${id}`].isPlaying = !this.state.tracks[`track${id}`].isPlaying
+      let audioSource = document.getElementById("audioSource")
+      audioSource.src = this.state.tracks[whichTrack].soundfile
+      if (currentTrack !== id || (firstPlay === true)) {
+        audioPlayer.load()
+      }
+      audioPlayer.play()
+      document.getElementById(whichTrack).innerHTML = '<i class="fas fa-pause fa-2x fontAwesomePlayTrackIcon"></i>'
+      if (currentTrack !== id) {
+        document.getElementById(whichTrack).innerHTML = '<i class="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>'
+        this.state.tracks[`track${currentTrack}`].isPlaying = false
+      }
+    } else {
+      audioPlayer.pause()
+      document.getElementById(whichTrack).innerHTML = '<i class="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>'
 
     }
+
+    firstPlay = false
+    currentTrack = id;
+
+    this.state.tracks[`track${id}`].isPlaying = !this.state.tracks[`track${id}`].isPlaying
+
+  }
 
   render() {
 
 
     let tracks = (
       <div>
-      {Object.keys(this.state.tracks).map((track, index) => {
-        return <Track key={index} id={`track${index}`} coverArt={this.state.tracks[track].coverArt} title={this.state.tracks[track].name} />
-      })}
+        {Object.keys(this.state.tracks).map((track) => {
+          return <Track key={track} id={track} coverArt={this.state.tracks[track].coverArt} title={this.state.tracks[track].name}
+            click={() => this.playAndPauseTrack(document.getElementById(track).id)}
+          />
+        })}
       </div>
-    ); 
+    );
 
 
     return (
@@ -92,12 +100,12 @@ playAndPauseTrack = () => {
         <div id="audioContainer">
 
           <audio id="audio" controls>
-            <source id="audioSource"/>
+            <source id="audioSource" />
           </audio>
         </div>
-        </div>
-        )
-      }
-    }
-    
-    export default App;
+      </div>
+    )
+  }
+}
+
+export default App;
