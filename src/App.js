@@ -37,18 +37,13 @@ class App extends Component {
 
 
   playAndPauseTrack = (whichTrack) => {
-    console.log(whichTrack)
     let id = whichTrack
-    id = id[id.length - 1]
-
-    console.log(this.state.tracks[whichTrack].soundfile)
     let audioPlayer = document.getElementById("audio")
     if (firstPlay === undefined) {
       currentTrack = id;
       firstPlay = true
     }
     if (this.state.tracks[whichTrack].isPlaying === false) {
-      // console.log(audioSource)
 
       let audioSource = document.getElementById("audioSource")
       audioSource.src = this.state.tracks[whichTrack].soundfile
@@ -58,8 +53,8 @@ class App extends Component {
       audioPlayer.play()
       document.getElementById(whichTrack).innerHTML = '<i class="fas fa-pause fa-2x fontAwesomePlayTrackIcon"></i>'
       if (currentTrack !== id) {
-        document.getElementById(whichTrack).innerHTML = '<i class="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>'
-        this.state.tracks[`track${currentTrack}`].isPlaying = false
+        document.getElementById(currentTrack).innerHTML = '<i class="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>'
+        this.state.tracks[currentTrack].isPlaying = false
       }
     } else {
       audioPlayer.pause()
@@ -70,7 +65,7 @@ class App extends Component {
     firstPlay = false
     currentTrack = id;
 
-    this.state.tracks[`track${id}`].isPlaying = !this.state.tracks[`track${id}`].isPlaying
+    this.state.tracks[whichTrack].isPlaying = !this.state.tracks[whichTrack].isPlaying
 
   }
 
