@@ -31,17 +31,9 @@ class App extends Component {
           soundfile: "soundfiles/Strictly for the Music.wav",
           isPlaying: false
         },
-      }, length: 0
+      }
     }
   }
-
-  componentDidMount() {
-    let tracksObjLength = Object.keys(this.state.tracks).length
-
-    this.setState({ length: tracksObjLength })
-  }
-
-
 
 
 playAndPauseTrack = () => {
@@ -78,12 +70,15 @@ playAndPauseTrack = () => {
 
   render() {
 
-    let tracks = []
 
-    for (let i = 1; i <= this.state.length; i++) {
-      tracks.push(<Track key={i} id={`track${i}`} coverArt={this.state.tracks[`track${i}`].coverArt} title={this.state.tracks[`track${i}`].name} />)
+    let tracks = (
+      <div>
+      {Object.keys(this.state.tracks).map((track, index) => {
+        return <Track key={index} id={`track${index}`} coverArt={this.state.tracks[track].coverArt} title={this.state.tracks[track].name} />
+      })}
+      </div>
+    ); 
 
-    }
 
     return (
       <div className="App">
