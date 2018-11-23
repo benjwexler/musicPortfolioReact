@@ -6,7 +6,7 @@ const track = (props) => {
         <div className="tracksContainer">
             <div className="coverArtContainer">
                 {/* The conditional below is just because on of the photos has a filter property on it*/}
-                <img id="soundcloudAvatar" className={props.coverArt === "AuraCoverArt.png" ? "coverArt" : "iGotYouCoverArt"}
+                <img alt={props.altTag} id="soundcloudAvatar" className={props.coverArt === "AuraCoverArt.png" ? "coverArt" : "iGotYouCoverArt"}
                     src={props.coverArt} />
             </div>
             <div className="trackTitleContainer">
