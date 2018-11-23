@@ -33,7 +33,6 @@ class App extends Component {
     }
   }
 
-
   playAndPauseTrack = (whichTrack) => {
     let id = whichTrack
     let audioPlayer = document.getElementById("audio")
@@ -57,7 +56,7 @@ class App extends Component {
         // this.setState({
         //   tracks: newState.tracks
         // });
-        
+
         this.state.tracks[currentTrack].isPlaying = false
       }
     } else {
@@ -70,7 +69,7 @@ class App extends Component {
     currentTrack = id;
 
     let newState2 = JSON.parse(JSON.stringify(this.state));
-    newState2.tracks[whichTrack].isPlaying  = !this.state.tracks[whichTrack].isPlaying
+    newState2.tracks[whichTrack].isPlaying = !this.state.tracks[whichTrack].isPlaying
     this.setState({
       tracks: newState2.tracks
     });
@@ -90,7 +89,6 @@ class App extends Component {
         })}
       </div>
     );
-
 
     return (
       <div className="App">

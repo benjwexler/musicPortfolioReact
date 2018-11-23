@@ -15,8 +15,6 @@ class Header extends React.Component {
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mr-auto">
-                
-
             </ul>
             <ul className="navbar-nav">
                 <li className="nav-item ">
