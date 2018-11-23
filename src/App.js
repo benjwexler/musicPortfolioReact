@@ -5,8 +5,6 @@ import Track from './Tracks/Tracks.js';
 
 let firstPlay
 let currentTrack = 1
-// let audioPlayer = document.getElementById("audio")
-// let audioSource = document.getElementById("audioSource")
 
 class App extends Component {
   constructor(props) {
@@ -54,6 +52,12 @@ class App extends Component {
       document.getElementById(whichTrack).innerHTML = '<i class="fas fa-pause fa-2x fontAwesomePlayTrackIcon"></i>'
       if (currentTrack !== id) {
         document.getElementById(currentTrack).innerHTML = '<i class="fas fa-play fa-2x fontAwesomePlayTrackIcon"></i>'
+        // let newState = JSON.parse(JSON.stringify(this.state));
+        // newState.tracks[currentTrack].isPlaying = false
+        // this.setState({
+        //   tracks: newState.tracks
+        // });
+        
         this.state.tracks[currentTrack].isPlaying = false
       }
     } else {
@@ -65,17 +69,22 @@ class App extends Component {
     firstPlay = false
     currentTrack = id;
 
-    this.state.tracks[whichTrack].isPlaying = !this.state.tracks[whichTrack].isPlaying
+    let newState2 = JSON.parse(JSON.stringify(this.state));
+    newState2.tracks[whichTrack].isPlaying  = !this.state.tracks[whichTrack].isPlaying
+    this.setState({
+      tracks: newState2.tracks
+    });
+
+    // this.state.tracks[whichTrack].isPlaying = !this.state.tracks[whichTrack].isPlaying
 
   }
 
   render() {
 
-
     let tracks = (
       <div>
         {Object.keys(this.state.tracks).map((track) => {
-          return <Track key={track} id={track} coverArt={this.state.tracks[track].coverArt} title={this.state.tracks[track].name}
+          return <Track alt={track} key={track} id={track} coverArt={this.state.tracks[track].coverArt} title={this.state.tracks[track].name}
             click={() => this.playAndPauseTrack(document.getElementById(track).id)}
           />
         })}
@@ -87,13 +96,12 @@ class App extends Component {
       <div className="App">
         <Header />
         <div id="picFrame">
-          <img id="soundcloudAvatar" src="soundcloudAvatar.jpg" />
+          <img id="soundcloudAvatar" src="soundcloudAvatar.jpg" alt="Profile Pic" />
         </div>
         <div id="alltracksBossContainer">
           {tracks}
         </div>
         <div id="audioContainer">
-
           <audio id="audio" controls>
             <source id="audioSource" />
           </audio>
