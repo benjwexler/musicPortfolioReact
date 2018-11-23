@@ -20,7 +20,15 @@ body {
 }
 
 .navbarText {
-  color: #0ECD99;
+  color: #0ECD99 !important;
+ 
+}
+
+#logoText {
+  color: #0ECD99 !important;
+ 
+} {
+  color: #0ECD99 !important;
  
 }
 
@@ -141,6 +149,8 @@ body {
 #audioContainer {
   margin-top: 10px;
   position: sticky;
+  max-width: 414px;
+    margin: auto;
   /* width: 100%; */
   /* position: relative; */
 }

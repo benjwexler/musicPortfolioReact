@@ -6,20 +6,16 @@ class Header extends React.Component {
       return (
         <React.Fragment>
           <nav className="navbar navbar-expand-md navbar-light navbarText">
-        <a id="logoText" className="navbar-brand">
-            <img id="kicklrLogo" src="logo.png"/> Mixed By Wex
-        </a>
+        <div id="logoText" className="navbar-brand">
+            <img alt="Logo" id="kicklrLogo" src="logo.png"/> Mixed By Wex
+        </div>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
             aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav mr-auto">
-                <li className="nav-item active ">
-                    <a className="nav-link" href="#">
-                        <span className="sr-only">(current)</span>
-                    </a>
-                </li>
+                
 
             </ul>
             <ul className="navbar-nav">
